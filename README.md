@@ -1,5 +1,9 @@
 # PHP tool for monitoring PostgreSQL statistic
 
+[![Latest Stable Version](https://poser.pugx.org/zvook/php-postgresql-stat/v/stable)](https://packagist.org/packages/zvook/php-postgresql-stat)
+[![Total Downloads](https://poser.pugx.org/zvook/php-postgresql-stat/downloads)](https://packagist.org/packages/zvook/php-postgresql-stat)
+[![License](https://poser.pugx.org/zvook/php-postgresql-stat/license)](https://packagist.org/packages/zvook/php-postgresql-stat)
+
 ### Requirements
 
 - PHP 5.6+
@@ -17,35 +21,35 @@
 
 ### Installation
 
-1. First of all you need to enable **pg_stat_statements** library.
-   Add to your *postgresql.conf*:
-   ```
-   shared_preload_libraries = 'pg_stat_statements'
-   track_io_timing = on # optional
-   ```
-2. Then connect to the **database you want to track** with user you will use to connect (**not with postgres user!**) and run:
-   ```sql
-   CREATE EXTENSION pg_stat_statements
-   ```
-   !Please note that you should run SQL above exactly **inside** your database and **exactly** by your backend user
-3. Restart postgre server
-
-4. Add to your composer.json
-   ```
-   "require": {
-       "zvook/php-postgresql-stat": "*"
-   }
-   ```
-5. Run
-   ```sh
-   $ composer update
-   ```
+* Update your *postgresql.conf*
+```ini
+shared_preload_libraries = 'pg_stat_statements'
+track_counts = on #enabled by default
+track_functions = on #if you need it
+track_io_timing = on #optional
+```
+* Then connect to the **database you want to track** with user you will use to connect (**not with postgres user!**) and run:
+```sql
+CREATE EXTENSION pg_stat_statements
+```
+!Please note that you should run SQL above exactly **inside** your database and **exactly** by your backend user
+* Restart postgre server
+* Add to your composer.json
+```json
+"require": {
+    "zvook/php-postgresql-stat": "*"
+}
+```
+* Run
+```bash
+$ composer update
+```
 
 ### Demo
 
 When package installed and postgreSQL configured you can build demo page to observe the situation.
 Go to the package root directory and edit **demo.php** with your database credentials. Then run:
-```sh
+```bash
 php demo.php > demo.html
 ```
 Open demo.html with browser
