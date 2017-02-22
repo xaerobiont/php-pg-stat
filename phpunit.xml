@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/5.3/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         backupGlobals="false"
+         colors="true"
+         verbose="true">
+    <testsuites>
+        <testsuite name="Postgres Monitor Test Suite">
+            <directory>./tests</directory>
+        </testsuite>
+    </testsuites>
+    <php>
+        <const name="PHPUNIT_TESTSUITE" value="true"/>
+        <env name="dbname" value="your_db_name"/>
+        <env name="dbuser" value="db_user"/>
+        <env name="dbpassword" value="db_pass"/>
+    </php>
+</phpunit>
