@@ -17,7 +17,7 @@
 
 ### Installation
 
-1. First of all you need to enable **pg_stat_statements** library
+1. First of all you need to enable **pg_stat_statements** library.
    Add to your *postgresql.conf*:
    ```
    shared_preload_libraries = 'pg_stat_statements'
@@ -48,7 +48,7 @@ Go to the package root directory and edit **demo.php** with your database creden
 ```sh
 php demo.php > demo.html
 ```
-Then open demo.html with browser
+Open demo.html with browser
 
 ### Basic Usage
 
