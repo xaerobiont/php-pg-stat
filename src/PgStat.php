@@ -100,16 +100,18 @@ class PgStat
     }
 
     /**
+     * @param int $minCalls Minimum table calls to participate the selection
      * @param string $order
      * @param null $limit
      * @return StatementStat[]
      * @throws PgStatException
      */
-    public function getStatementsStat($order = 'calls DESC, avg_time DESC', $limit = null)
+    public function getStatementsStat($minCalls = 50, $order = 'avg_time DESC, calls DESC', $limit = null)
     {
         $sql = "SELECT pgss.*, (total_time/calls) as avg_time
             FROM pg_stat_statements pgss WHERE dbid = ".$this->connection->getDbId()."
             AND query NOT SIMILAR TO ('%(pg_indexes|pg_database|pg_stat_user_tables|pg_stat_database|pg_stat_statements|DEALLOCATE)%')
+            AND query NOT IN ('COMMIT', 'BEGIN', 'ROLLBACK') AND pgss.calls >= ".$minCalls."
             ORDER BY ".$order;
         if (!is_null($limit)) {
             $sql .= sprintf(' LIMIT %d', $limit);

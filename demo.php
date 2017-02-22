@@ -9,7 +9,7 @@ $dbPass = '';
 $pgStat = new \zvook\PostgreStat\PgStat($dbName, $dbUser, $dbPass);
 $dbStat = $pgStat->getDbStat();
 $tablesStat = $pgStat->getTablesStat('total_table_size DESC', 5);
-$statementsStat = $pgStat->getStatementsStat('calls DESC, avg_time DESC', 10);
+$statementsStat = $pgStat->getStatementsStat(5, 'avg_time DESC, calls DESC', 10);
 $uselessIndexes = $pgStat->getUselessIndexes();
 $missingIndexes = $pgStat->getLowIndexUsageTables();
 
